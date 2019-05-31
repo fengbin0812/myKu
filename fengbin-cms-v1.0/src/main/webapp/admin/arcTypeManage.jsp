@@ -34,13 +34,67 @@
 	
 	
 	function saveArcType(){
-		
+		$("#fm").form("submit",{
+			url:url,
+			onSubmit:function(){
+				return $(this).form("validate");
+			},
+			success:function(result){
+				var result=eval('('+result+')');
+				if(result.success){
+					$.messager.alert("系统提示","保存成功！");
+					$("#dlg").dialog("close");
+					$("#dg").datagrid("reload");
+					resetValue();
+				}else{
+					$.messager.alert("系统提示","保存失败！");
+					return;
+				}
+			}
+		});
+	}
+	
+	function resetValue(){
+		$("#typeName").val("");
+		$("#sortNo").val("");
+		$("#keywords").val("");
+		$("#description").val("");
 	}
 	
 	function closeArcTypeDialog(){
-		
+		$("#dlg").dialog("close");
+		resetValue();
 	}
 
+	function deleteArcType(){
+		var selectedRows=$("#dg").datagrid("getSelections");
+		if(selectedRows.length==0){
+			$.messager.alert("系统提示","请选择要删除的帖子！");
+			return;
+		}
+		var strIds=[];
+		for(var i=0;i<selectedRows.length;i++){
+			strIds.push(selectedRows[i].id);
+		}
+		var ids=strIds.join(",");
+		$.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
+			if(r){
+				$.post("${pageContext.request.contextPath}/admin/arcType/delete.do",{ids:ids},function(result){
+					if(result.success){
+						if(result.exist){
+							$.messager.alert("系统提示",result.exist);
+						}else{
+							$.messager.alert("系统提示","数据已成功删除！");
+						}
+						$("#dg").datagrid("reload");							
+					}else{
+						$.messager.alert("系统提示","数据删除失败！");
+					}
+				},"json");
+			}
+		});
+	}
+	
 </script>
 </head>
 <body style="margin: 1px">
@@ -92,7 +146,7 @@ url="${pageContext.request.contextPath}/admin/arcType/list.do" fit="true" toolba
 					SEO关键字：
 				</td>
 				<td>
-					<input type="text" id="keywords" name="keywords" class="easyui=validatebox" required="true"/>
+					<input type="text" id="keywords" name="keywords" class="easyui-validatebox" required="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +154,7 @@ url="${pageContext.request.contextPath}/admin/arcType/list.do" fit="true" toolba
 					SEO描述：
 				</td>
 				<td>
-					<textarea rows="3" cols="30" id="description" name="description" class="easyui=validatebox" required="true"></textarea>
+					<textarea rows="3" cols="30" id="description" name="description" class="easyui-validatebox" required="true"></textarea>
 				</td>
 			</tr>
 		</table>

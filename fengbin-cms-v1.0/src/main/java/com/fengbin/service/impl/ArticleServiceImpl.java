@@ -58,8 +58,14 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleDao.list(map);
 	}
 
-	public Long getTotal(Map<String, Object> map) {
-		return articleDao.getTotal(map);
+	public Long getToal(Map<String, Object> map) {
+		return articleDao.getToal(map);
+	}
+
+	@Override
+	public int add(Article article) {
+		// TODO Auto-generated method stub
+		return articleDao.add(article);
 	}
 
 }

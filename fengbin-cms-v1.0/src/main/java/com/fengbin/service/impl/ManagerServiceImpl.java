@@ -22,4 +22,10 @@ public class ManagerServiceImpl implements ManagerService{
 	public Manager getByUserName(String userName) {
 		return managerDao.getByUserName(userName);
 	}
+
+	@Override
+	public int update(Manager manager) {
+		// TODO Auto-generated method stub
+		return managerDao.update(manager);
+	}
 }

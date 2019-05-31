@@ -25,4 +25,10 @@ public interface ArcTypeService {
 	 * @return
 	 */
 	public ArcType findById(Integer id);
+
+	public Long getToal(Map<String, Object> map);
+
+	public int save(ArcType aType);
+
+	public int update(ArcType aType);
 }

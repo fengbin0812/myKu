@@ -30,4 +30,22 @@ public class ArcTypeServiceImpl implements ArcTypeService{
 		return arcTypeDao.findById(id);
 	}
 
+	@Override
+	public Long getToal(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return arcTypeDao.getToal(map);
+	}
+
+	@Override
+	public int save(ArcType aType) {
+		// TODO Auto-generated method stub
+		return arcTypeDao.save(aType);
+	}
+
+	@Override
+	public int update(ArcType aType) {
+		// TODO Auto-generated method stub
+		return arcTypeDao.update(aType);
+	}
+
 }

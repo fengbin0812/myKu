@@ -77,5 +77,9 @@ public interface ArticleDao {
 	 * @param map
 	 * @return
 	 */
-	public Long getTotal(Map<String,Object> map);
+	public Long getToal(Map<String,Object> map);
+
+	public int add(Article article);
+	
+	
 }

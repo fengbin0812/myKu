@@ -15,4 +15,6 @@ public interface ManagerService {
 	 * @return
 	 */
 	public Manager getByUserName(String userName);
+	
+	public int update(Manager manager);
 }

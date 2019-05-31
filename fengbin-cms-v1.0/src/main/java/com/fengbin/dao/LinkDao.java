@@ -18,4 +18,17 @@ public interface LinkDao {
 	 * @return
 	 */
 	public List<Link> list(Map<String,Object> map);
+	
+	
+	
+	public Long getToal(Map<String, Object> map);
+	
+	
+	public int add(Link link);
+	
+	public int update(Link link);
+
+
+
+	public void delete(int id);
 }

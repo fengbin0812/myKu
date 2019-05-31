@@ -16,4 +16,7 @@ public interface ManagerDao {
 	 */
 	public Manager getByUserName(String userName);
 	
+	
+	public int update(Manager manager);
+	
 }

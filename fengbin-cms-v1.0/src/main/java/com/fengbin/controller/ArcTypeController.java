@@ -55,7 +55,7 @@ public class ArcTypeController {
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
 		List<Article> articleList=articleService.list(map);
-		Long total=articleService.getTotal(map);
+		Long total=articleService.getToal(map);
 		ArcType arcType=arcTypeService.findById(id);
 		mav.addObject("articleList", articleList);
 		mav.addObject("arcType", arcType);

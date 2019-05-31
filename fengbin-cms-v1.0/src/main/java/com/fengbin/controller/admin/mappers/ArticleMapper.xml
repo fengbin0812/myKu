@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="isSlide" column="isSlide"/>
 		<result property="keyWords" column="keyWords"/>
 		
-		<association property="arcType" column="typeId" select="com.bawei.dao.ArcTypeDao.findById"></association>
+		<association property="arcType" column="typeId" select="com.fengbin.dao.ArcTypeDao.findById"></association>
 	</resultMap>
 		
 	<select id="getNewest"  resultMap="ArticleResult">
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<select id="getTotal" parameterType="Map" resultType="Long">
+	<select id="getToal" parameterType="Map" resultType="Long">
 		select count(*) from t_article
 		<where>
 			<if test="typeId!=null">
@@ -78,5 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
+	<insert id="add" parameterType="Article">
+		insert into t_article values(null,#{title},#{publishDate},#{content},#{summary},#{titleColor},#{click},#{isRecommend},#{isSlide},#{slideImage},#{arcType.id},#{keyWords})
+	</insert>
 	
 </mapper> 
